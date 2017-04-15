@@ -16,7 +16,7 @@ type yumRepository struct {
 	name  string
 }
 
-func NewRepository(store *yumRepoStore, name string) repos.AnyRepository {
+func newRepository(store *yumRepoStore, name string) repos.AnyRepository {
 	return &yumRepository{store, name}
 }
 
@@ -24,6 +24,7 @@ func (r *yumRepository) path() string {
 	return filepath.Join(r.store.base, r.name)
 }
 
+// Add a file to a repository
 func (r *yumRepository) Add(filename string, f io.Reader) {
 	log.Printf("Adding %s to repository %s", filename, r.path())
 	destinationPath := filepath.Join(r.path(), filename)

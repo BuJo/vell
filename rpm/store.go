@@ -13,12 +13,13 @@ type yumRepoStore struct {
 	base string
 }
 
+// Instanciate a new RPM based repository store by providing a base path.
 func NewRepositoryStore(base string) repos.RepositoryStore {
 	return &yumRepoStore{base}
 }
 
 func (store *yumRepoStore) Get(name string) repos.AnyRepository {
-	return NewRepository(store, name)
+	return newRepository(store, name)
 }
 
 func (store *yumRepoStore) Initialize(name string) error {

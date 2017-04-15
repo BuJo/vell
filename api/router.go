@@ -1,12 +1,16 @@
 package api
 
-import "github.com/gorilla/mux"
+import (
+	"github.com/gorilla/mux"
+	"net/http"
+)
 
-func NewRouter() *mux.Router {
+// NewRouter instanciates a HTTP Handler for Vell endpoints.
+func NewRouter() http.Handler {
 
 	router := mux.NewRouter().StrictSlash(true)
 	for _, route := range routes {
-		handler := Logger(route.HandlerFunc, route.Name)
+		handler := withLogging(route.HandlerFunc, route.Name)
 		router.
 			Methods(route.Method).
 			Path(route.Pattern).

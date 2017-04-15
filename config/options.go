@@ -1,3 +1,4 @@
+// The config package provides a common global store for configuration options.
 package config
 
 import (
@@ -8,16 +9,17 @@ import (
 )
 
 var (
-	httpPort      = os.Getenv("VELL_HTTP_PORT")
-	httpAddress   = os.Getenv("VELL_HTTP_ADDRESS")
-	ReposPath     = os.Getenv("VELL_REPOS_PATH")
+	HttpPort    = os.Getenv("VELL_HTTP_PORT")
+	HttpAddress = os.Getenv("VELL_HTTP_ADDRESS")
+	ReposPath   = os.Getenv("VELL_REPOS_PATH")
+
 	RepoStore     repos.RepositoryStore
 	ListenAddress string
 )
 
 func init() {
-	if httpPort == "" {
-		httpPort = "8080"
+	if HttpPort == "" {
+		HttpPort = "8080"
 	}
 
 	if ReposPath == "" {
@@ -25,5 +27,5 @@ func init() {
 	}
 	RepoStore = rpm.NewRepositoryStore(ReposPath)
 
-	ListenAddress = fmt.Sprintf("%s:%s", httpAddress, httpPort)
+	ListenAddress = fmt.Sprintf("%s:%s", HttpAddress, HttpPort)
 }

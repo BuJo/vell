@@ -4,33 +4,33 @@ import (
 	"net/http"
 )
 
-type Route struct {
+type route struct {
 	Name        string
 	Method      string
 	Pattern     string
 	HandlerFunc http.HandlerFunc
 }
 
-var routes = []Route{
-	Route{
+var routes = []route{
+	route{
 		"createRepo",
 		"POST",
 		"/repositories",
 		CreateRepo,
 	},
-	Route{
+	route{
 		"listRepos",
 		"GET",
 		"/repositories",
 		ListRepos,
 	},
-	Route{
+	route{
 		"addRPM",
 		"POST",
 		"/repositories/{name}/packages",
 		AddRPM,
 	},
-	Route{
+	route{
 		"listRPMs",
 		"GET",
 		"/repositories/{name}/packages",
